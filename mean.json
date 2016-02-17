@@ -1,4 +1,6 @@
 {
     "dependencies": {},
-    "anonymizedData": true
+    "anonymizedData": true,
+    "name": "expenseTrackerApp",
+    "id": "56c3cb67ca3e98430e38a7a2"
 }

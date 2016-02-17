@@ -45,6 +45,22 @@ gulp.task('runKarma', ['runMocha'], function (done) {
     karma.start();
   });
 });
+gulp.task('testWatch', ['runMocha'], function (done) {
+  request('http://localhost:3001/api/aggregatedassets', function(error, response, body) {
+    var aggregatedassets = JSON.parse(body);
+    aggregatedassets = processIncludes(aggregatedassets.footer.js);
+
+    var karma = new karmaServer({
+      configFile: __dirname + '/../karma.conf.js',
+      // singleRun: true,
+      files: aggregatedassets.concat(['packages/**/public/tests/**/*.js', 'packages/**/public/**/*.html'])
+    }, function () {
+      done();
+    });
+
+    karma.start();
+  });
+});
 
 function processIncludes(aggregatedAssets) {
   for(var i = 0; i < aggregatedAssets.length; ++i) {

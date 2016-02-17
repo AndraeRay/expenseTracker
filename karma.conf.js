@@ -15,9 +15,15 @@ module.exports = function(config) {
     // list of files to exclude
     exclude: [],
 
+    files: [
+      '../bower_components/angular-route/angular-route.js',
+      '../bower_components/angular-ui-router/release/angular-ui-router.js',
+    ],
+
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage', 'junit'],
+    // reporters: ['progress', 'coverage', 'junit'],
+    reporters: ['progress'],
 
     junitReporter: {
       outputDir: 'tests/results/public/junit/'
@@ -28,9 +34,9 @@ module.exports = function(config) {
       // source files that you want to generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'packages/**/public/controllers/**/*.js': ['coverage'],
-      'packages/**/public/services/**/*.js': ['coverage'],
-      'packages/**/public/directives/**/*.js': ['coverage'],
+      // 'packages/**/public/controllers/**/*.js': ['coverage'],
+      // 'packages/**/public/services/**/*.js': ['coverage'],
+      // 'packages/**/public/directives/**/*.js': ['coverage'],
 
       'packages/**/public/**/*.html': ['ng-html2js']
     },
@@ -67,7 +73,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -84,6 +90,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: true
+    // singleRun: true
   });
 };
