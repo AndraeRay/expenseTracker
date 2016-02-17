@@ -1,0 +1,9 @@
+<div class="" data-ng-controller="ExpenseTrackerController">
+  <div ng-repeat="cat in category.list">
+    <span ng-bind="cat"></span>
+    <a href='#' ng-click="category.remove($index)"> X</a>
+  </div>
+    <input type="text" name="addCategory" ng-model="category.input">
+    <a href='#' ng-click="category.add(category.input)"> Add category</a>
+</div>
+
