@@ -16,7 +16,7 @@
 
     $scope.category = {
       input: '',
-      list: ['one','two','three'],
+      list: [],
       add: function (item){
         if(this.isValidAddition(item)) {
           this.list.push(item);
@@ -35,5 +35,10 @@
         this.list.splice(index, 1);
       }
     }
+
+    Categories.get().then(function(response){
+      $scope.category.list = response;
+    });
+
   }
 })();
