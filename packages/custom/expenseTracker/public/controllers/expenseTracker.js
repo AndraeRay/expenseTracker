@@ -6,9 +6,9 @@
     .module('mean.expenseTracker')
     .controller('ExpenseTrackerController', ExpenseTrackerController);
 
-  ExpenseTrackerController.$inject = ['$scope', 'ExpenseTracker'];
+  ExpenseTrackerController.$inject = ['$scope', 'Categories'];
 
-  function ExpenseTrackerController($scope, ExpenseTracker) {
+  function ExpenseTrackerController($scope, Categories) {
     // $scope.global = Global;
     // $scope.package = {
     //   name: 'expenseTracker'

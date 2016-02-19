@@ -1,15 +1,12 @@
-(function () {
-  'use strict';
 
-  angular
-    .module('mean.expenseTracker')
-    .factory('ExpenseTracker', ExpenseTracker);
+angular.module('mean.expenseTracker').factory('Categories', function($http) {
+  return {
+    get: function() {    
+      return $http.get('/user/1/Categories')
+        .then(function(result) {
+          return result.data;
+        });
+    }
+  };
+});
 
-  ExpenseTracker.$inject = [];
-
-  function ExpenseTracker() {
-    return {
-      name: 'expenseTracker'
-    };
-  }
-})();

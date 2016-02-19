@@ -17,7 +17,7 @@ describe('Category Controller', function() {
     expect(scope.category.list).toBeDefined();
   });
 
-  it('can add a category to list', function() {
+  it('can add a category to the list', function() {
     var category = 'Category7';
     scope.category.add(category);
     expect(scope.category.list[3]).toBe(category);
@@ -43,7 +43,7 @@ describe('Category Controller', function() {
     expect(scope.category.list.length).toBe(length);
   });
 
-  it('can remove a cateogry from the', function() {
+  it('can remove a cateogry from the list', function() {
     var category, index;
     index = 1;
     category = scope.category.list[index];
