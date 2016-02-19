@@ -1,8 +1,9 @@
 
 angular.module('mean.expenseTracker').factory('Categories', function($http) {
   return {
-    get: function() {    
-      return $http.get('/user/1/Categories')
+    get: function() {
+      var userId = 1;    
+      return $http.get('/user/'+ userId +'/Categories')
         .then(function(result) {
           return result.data;
         });

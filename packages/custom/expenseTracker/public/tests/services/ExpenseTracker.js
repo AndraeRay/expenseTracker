@@ -1,6 +1,6 @@
 "use strict";
 
-describe("reddit api service", function () {
+describe("Categories Service", function () {
   var httpBackend, Categories, categoriesMock;
 
   beforeEach(module('ui.router'));
@@ -29,7 +29,9 @@ describe("reddit api service", function () {
 
   it("Should fetch categories for a user", function () {
     httpBackend.expect('GET', '/user/1/Categories');
-  	Categories.get();
+  	Categories.get().then(function(response){
+  		expect(response).toEqual(categoriesMock);
+  	});
     httpBackend.flush();
   });
 
