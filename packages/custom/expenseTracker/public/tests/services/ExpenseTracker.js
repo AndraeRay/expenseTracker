@@ -20,7 +20,7 @@ describe("Categories Service", function () {
    });
 
 	categoriesMock = {
-  		"Categories":[
+  		"categories":[
       	"bills",
       	"transportation",
       	"fun and eating out"
@@ -30,7 +30,7 @@ describe("Categories Service", function () {
   it("Should fetch categories for a user", function () {
     httpBackend.expect('GET', '/user/1/Categories');
   	Categories.get().then(function(response){
-  		expect(response).toEqual(categoriesMock);
+  		expect(response).toEqual(categoriesMock.categories);
   	});
     httpBackend.flush();
   });
