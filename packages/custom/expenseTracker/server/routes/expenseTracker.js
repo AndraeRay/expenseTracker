@@ -17,6 +17,78 @@
       res.send('Only users with Admin role can access this');
     });
 
+    app.get('/api/test', function (req, res, next) {
+
+      res.send('enjoy your banana');
+    });
+
+    var mongoose = require('mongoose');
+    var Post = mongoose.model('Post');
+    var Comment = mongoose.model('Comment');
+    var Categories = mongoose.model('Categories');
+
+    app.get('/api/posts', function(req, res, next) {
+      Post.find(function(err, posts){
+        if(err){ return next(err); }
+
+        res.json(posts);
+      });
+    });
+    app.post('/api/posts', function(req, res, next) {
+      var post = new Post(req.body);
+
+      post.save(function(err, post){
+        if(err){ return next(err); }
+
+        res.json(post);
+      });
+    });
+    app.param('post', function(req, res, next, id) {
+      var query = Post.findById(id);
+
+      query.exec(function (err, post){
+        if (err) { return next(err); }
+        if (!post) { return next(new Error('can\'t find post')); }
+
+        req.post = post;
+        return next();
+      });
+    });
+    app.get('/api/posts/:post', function(req, res) {
+      res.json(req.post);
+    });
+    app.put('/api/posts/:post/upvote', function(req, res, next) {
+      req.post.upvote(function(err, post){
+        if (err) { return next(err); }
+
+        res.json(post);
+      });
+    });
+    app.get('/api/categories', function(req, res, next) {
+      Categories.find(function(err, categories){
+        if(err){ return next(err); }
+
+        res.json(categories);
+      });
+    });
+    app.put('/api/categories', function(req, res, next) {
+      var categories = new Categories(req.body);
+
+      categories.save(function(err, categories){
+        if(err){ return next(err); }
+
+        res.json(categories);
+      });
+    });
+    app.post('/api/categories', function(req, res, next) {
+      var categories = new Categories(req.body);
+
+      categories.save(function(err, categories){
+        if(err){ return next(err); }
+
+        res.json(categories);
+      });
+    });
     app.get('/api/expenseTracker/example/render', function (req, res, next) {
       ExpenseTracker.render('index', {
         package: 'expenseTracker'

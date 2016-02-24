@@ -48,5 +48,13 @@ ExpenseTracker.register(function(app, auth, database) {
     });
     */
 
+    var mongoose = require('mongoose');
+    require('./server/models/Posts');
+    require('./server/models/Comments');
+    require('./server/models/Categories');
+
+    mongoose.connect('mongodb://localhost/nodetest1');
+
+
   return ExpenseTracker;
 });
