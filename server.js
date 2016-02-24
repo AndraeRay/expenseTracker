@@ -13,6 +13,9 @@ var mean = require('meanio');
 var cluster = require('cluster');
 var deferred = require('q').defer();
 
+//require DB
+var db = require('./config/db');
+
 
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
 
