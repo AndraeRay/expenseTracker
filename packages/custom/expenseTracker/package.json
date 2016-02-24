@@ -6,9 +6,11 @@
     "name": "mean scaffold"
   },
   "mean": "0.5.5",
-  "dependencies": {},
+  "dependencies": {
+    "mongoose": "^4.4.4"
+  },
   "license": "MIT",
   "scripts": {
-    "postinstall" : "bower install"
+    "postinstall": "bower install"
   }
 }

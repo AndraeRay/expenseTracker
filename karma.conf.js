@@ -18,6 +18,9 @@ module.exports = function(config) {
     files: [
       '../bower_components/angular-route/angular-route.js',
       '../bower_components/angular-ui-router/release/angular-ui-router.js',
+      '../bower_components/jasmine-jquery/lib/jasmine-jquery',
+      'bower_components/jasmine-jquery/lib/jasmine-jquery',
+      {pattern: 'tests/mock/*.json', watched: true, served: true, included: false}
     ],
 
     // test results reporter to use
