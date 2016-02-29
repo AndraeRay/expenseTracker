@@ -2,10 +2,18 @@
 angular.module('mean.expenseTracker').factory('Categories', function($http) {
   return {
     get: function() {
-      var userId = 1;    
-      return $http.get('/user/'+ userId +'/Categories')
+      return $http.get('/api/categories')
         .then(function(result) {
-          return result.data.categories;
+          return result.data;
+        });
+    },
+    set: function(list) {
+      var body = {
+        "categories": list
+      }
+      return $http.put('/api/categories', body) 
+        .then(function(result){
+          return 'success'
         });
     }
   };

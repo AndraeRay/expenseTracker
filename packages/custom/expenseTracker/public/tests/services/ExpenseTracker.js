@@ -10,7 +10,9 @@ describe("Categories Service", function () {
     httpBackend = $httpBackend;
     Categories = _Categories_;
 
-    httpBackend.whenGET("/user/1/Categories").respond(categoriesMock);
+    httpBackend.whenGET("/api/categories").respond(categoriesMock);
+    httpBackend.whenPUT("/api/categories").respond('success');
+
 
   }));
 
@@ -28,9 +30,20 @@ describe("Categories Service", function () {
 	};
 
   it("Should fetch categories for a user", function () {
-    httpBackend.expect('GET', '/user/1/Categories');
+    httpBackend.expect('GET', '/api/categories');
   	Categories.get().then(function(response){
-  		expect(response).toEqual(categoriesMock.categories);
+  		expect(response.categories).toEqual(categoriesMock.categories);
+  	});
+    httpBackend.flush();
+  });  
+
+  it("Should set categories for a user", function () {
+  	var newCategories = ["childcare","medical"]
+  	var body = {"categories":["childcare", "medical"]}
+  	
+    httpBackend.expect('PUT', '/api/categories', body);
+  	Categories.set(newCategories).then(function(response){
+  		expect(response).toEqual('success');
   	});
     httpBackend.flush();
   });
