@@ -33,11 +33,15 @@
       },
       remove: function (index){
         this.list.splice(index, 1);
+      },
+      save: function (){
+        Categories.set(this.list);
       }
     }
 
     Categories.get().then(function(response){
-      $scope.category.list = response;
+      console.log(response);
+      $scope.category.list = response.categories;
     });
 
   }

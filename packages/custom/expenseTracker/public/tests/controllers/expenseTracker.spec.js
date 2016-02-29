@@ -14,7 +14,7 @@ describe('Category Controller', function() {
   beforeEach(inject(function(_$controller_, _$rootScope_, $httpBackend){
     // The injector unwraps the underscores (_) from around the parameter names when matching
     httpBackend = $httpBackend;
-    httpBackend.whenGET("/user/1/Categories").respond(categoriesMock);
+    httpBackend.whenGET("/api/categories").respond(categoriesMock);
 
     controller = _$controller_;
     scope = _$rootScope_;
@@ -41,7 +41,7 @@ describe('Category Controller', function() {
   };
 
   it('gets a list of categories', function() {
-    httpBackend.expect('GET', '/user/1/Categories')
+    httpBackend.expect('GET', '/api/categories')
     controller = createController();
     httpBackend.flush();
     expect(scope.category).toBeDefined();
@@ -91,4 +91,15 @@ describe('Category Controller', function() {
     scope.category.remove(index);
     expect(scope.category.list.indexOf(category)).toBe(-1);
   });
+
+  it('can save updated categories list', function() {
+    controller = createController();
+    httpBackend.flush();
+    scope.category.list = ['fun'];
+    httpBackend.expect('PUT', '/api/categories','{"categories":["fun"]}').respond('success');
+
+    scope.category.save();
+    httpBackend.flush();
+
+  })
 });
