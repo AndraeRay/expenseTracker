@@ -65,28 +65,19 @@
       });
     });
     app.get('/api/categories', function(req, res, next) {
-      Categories.find(function(err, categories){
+      Categories.findOne({ username: 'default'}, function(err, categories){
         if(err){ return next(err); }
 
         res.json(categories);
       });
     });
     app.put('/api/categories', function(req, res, next) {
-      var categories = new Categories(req.body);
-
-      categories.save(function(err, categories){
+      // var query= {'username': req.body.username}
+      var query= {'username': 'default'}
+      Categories.findOneAndUpdate(query, req.body, {upsert:true}, function(err, categories){
         if(err){ return next(err); }
 
-        res.json(categories);
-      });
-    });
-    app.post('/api/categories', function(req, res, next) {
-      var categories = new Categories(req.body);
-
-      categories.save(function(err, categories){
-        if(err){ return next(err); }
-
-        res.json(categories);
+        res.json("succesfully saved");
       });
     });
     app.get('/api/expenseTracker/example/render', function (req, res, next) {
