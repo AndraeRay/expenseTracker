@@ -26,6 +26,7 @@
     var Post = mongoose.model('Post');
     var Comment = mongoose.model('Comment');
     var Categories = mongoose.model('Categories');
+    var Expense = mongoose.model('Expenses');
 
     app.get('/api/posts', function(req, res, next) {
       Post.find(function(err, posts){
@@ -74,7 +75,22 @@
     app.put('/api/categories', function(req, res, next) {
       // var query= {'username': req.body.username}
       var query= {'username': 'default'}
-      Categories.findOneAndUpdate(query, req.body, {upsert:true}, function(err, categories){
+      Categories.save(req.body, function(err, categories){
+        if(err){ return next(err); }
+
+        res.json("succesfully saved");
+      });
+    });
+    app.get('/api/expenses', function(req, res, next) {
+      Expense.find({ username: 'default'}, function(err, categories){
+        if(err){ return next(err); }
+
+        res.json(categories);
+      });
+    });
+    app.post('/api/expenses', function(req, res, next) {
+      var expense = new Expense(req.body);
+      expense.save(function(err, expense){
         if(err){ return next(err); }
 
         res.json("succesfully saved");

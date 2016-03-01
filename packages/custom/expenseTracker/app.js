@@ -52,6 +52,7 @@ ExpenseTracker.register(function(app, auth, database) {
     require('./server/models/Posts');
     require('./server/models/Comments');
     require('./server/models/Categories');
+    require('./server/models/Expenses');
 
     mongoose.connect('mongodb://localhost/nodetest1');
 
