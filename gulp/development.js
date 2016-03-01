@@ -64,7 +64,9 @@ gulp.task('devServe', ['env:development'], function () {
       '.DS_Store', '**/.DS_Store',
       '.bower-*',
       '**/.bower-*',
-      '**/tests'
+      '**/tests',
+      'packages/*/*/tests/',
+      '*.spec.js'
     ],
     nodeArgs: ['--debug'],
     stdout: false
@@ -89,7 +91,7 @@ gulp.task('watch', function () {
   plugins.livereload.listen({interval:500});
 
   gulp.watch(paths.coffee,['coffee']);
-  gulp.watch(paths.js, ['jshint']);
+  // gulp.watch(paths.js, ['jshint']);
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(paths.less, ['less']);
   gulp.watch(paths.sass, ['sass']);
